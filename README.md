@@ -44,6 +44,10 @@ grub-update //更新grub
 
 拜读了 Go 语言圣经，这本书不单单是讲语法，有很多拓展实战的内容，读得还是蛮开心的。再补些 http 知识和 Go 相关函数可以尝试去写点小程序吧。 Go 没有安排明确的任务，我就写点有意思的东西在那一块了。电脑保修最早预约在了十三号上午，祈祷 ing……
 
+### DAY4
+
+受不鸟啦！电脑修不好只能晚上去网吧通宵了，去阿里云申请了个 ECS 又开始配环境。。。然后大致学了下 Shell 和 构建工具，又是摸鱼的一天呢~
+
 ---
 
 ## Linux
@@ -129,6 +133,35 @@ git remote show <name>//查看远程仓库的详细信息
 
 ## Shell 和构建工具
 
+- [x] 能熟悉使用管道，I/O 重定向等 Shell 内置功能。
+
+```
+ls | head -n X | tail -n Y //输出文件夹前 X-Y+1 到 X 个文件的文件名
+ls -t | head -n X //输出文件夹最新的 X 个文件
+ls -l --time-style="+%Y-%m-%d-%H:%M:%S" | sed '1d' | awk '{print $6 " " $7}' | sort -t ' ' -k 1 -r | head -n X | awk '{print $2}' //我真是有够无聊的 
+
+```
+- [x] 常用构建工具的使用(Makefile)
+
+```
+NAME=main
+
+.PHONY=build
+build:
+        go build -o ${NAME} main.go
+
+.PHONY=run
+run:
+        ./${NAME} ${ARGS}
+
+.PHONY=clean
+clean:
+        go clean
+
+.PHONY=start
+start:build run
+
+```
 ---
 
 ## Go
