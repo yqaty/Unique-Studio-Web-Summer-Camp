@@ -48,6 +48,12 @@ grub-update //更新grub
 
 受不鸟啦！电脑修不好只能晚上去网吧通宵了，去阿里云申请了个 ECS 又开始配环境。。。然后大致学了下 Shell 和 构建工具，又是摸鱼的一天呢~
 
+### DAY5
+
+世界上还有我这么蠢的人吗。。。早上离开网吧的时候就关了机没结账结果就把我剩下六十多元全扣掉了。。。
+
+看了下 docker，感觉没啥好说的www
+
 ---
 
 ## Linux
@@ -176,3 +182,104 @@ start:build run
 ---
 
 ## Docker
+
+- [x]  了解 docker
+
+> Docker是一种开源的容器化平台，允许用户将应用程序打包成一个独立的、可移植的容器，然后在任何环境中运行，提供了一种简单、快速、可靠和可移植的方式来打包、部署和运行应用程序。
+
+- [x]  镜像/容器
+
+> 镜像是一个静态的模板，容器是镜像的可运行实例，类似类和实例。但感觉镜像抽象程度也没类那么高（
+
+- [x] 构建镜像/启动容器
+
+> 可以编写 Dockerfile 文件构建或者从容器导出镜像
+
+```
+docker export container | docker import - image //从容器导出镜像
+
+docker run //启动容器
+```
+
+- [x] 简单的 Dockerfile 编写
+
+```
+#配置 golang，并在创建时运行 main.go
+FROM centos:7
+RUN yum install -y wget \
+        && wget https://golang.google.cn/dl/go1.14.4.linux-amd64.tar.gz \
+        && tar -zxf go1.14.4.linux-amd64.tar.gz -C /usr/local
+ENV GOROOT=/usr/local/go 
+ENV PATH=$PATH:$GOROOT/bin
+COPY main.go /root/Go/
+ENTRYPOINT ["go","run","/root/Go/main.go"]
+CMD [""]
+```
+
+- [x] 查看现有容器的状态
+
+```
+docker ps -a
+```
+
+-[x] 如何进入一个容器
+
+```
+docker exec -i -t name/id /bin/bash
+```
+
+- [x] 如何停止一个容器
+
+```
+docker stop name/id
+```
+
+- [x] docker-compose
+i
+> Docker Compose是一个用于定义和运行多个Docker容器的工具，可以通过一个单一的YAML文件来描述容器之间的关系、配置和依赖。基本就是 docker 版的 Makefile 了。
+
+- [x] 简单的 docker-compose.yml 的编写
+
+```
+#目前对于各种服务理解不深，只知道大致写法不知道实际该怎么编写。
+
+#docker-compose版本
+version:'3'
+
+#各个服务
+services:
+  #服务名称
+  service_name:
+    #容器生成方式有两种
+    image: #指定镜像
+    build: #用指定目录的 Dockerfile 生成
+    
+    container_name: #容器名
+    restart: #重启策略
+    volumes: #挂载路径设置
+      - "path1:path2:rw/ro" #读写/只读
+      - ...
+      - ...
+    depends_on: #容器依赖
+      - service_name #服务名
+      - ...
+      - ...
+    enviroments: #环境变量
+      - key:value
+      - ...
+      - ...
+    links: #连接的服务
+      - service_name #服务名
+    ports: #映射到宿主机的端口
+      - "port" #随机映射
+      - "port1:port2" #指定映射
+      - ...
+    expose: #暴露端口，被连接的服务访问
+      - port
+      - ...
+      - ...
+```
+
+- [x] docker network
+
+> Docker网络是Docker引擎提供的一种功能，它允许Docker容器之间进行通信和连接，并提供一种隔离和安全的网络环境。
