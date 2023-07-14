@@ -222,7 +222,7 @@ CMD [""]
 docker ps -a
 ```
 
--[x] 如何进入一个容器
+- [x] 如何进入一个容器
 
 ```
 docker exec -i -t name/id /bin/bash
