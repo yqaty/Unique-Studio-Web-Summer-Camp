@@ -1,12 +1,16 @@
 # Unique-Studio-Web-Summer-Camp
 
-## 学习进度
+<details>
+  <summary><h2>TASK 0 : Previous Knowledge</h2></summary> 
+  
+<details>
+  <summary><h3>Daily Report</h3></summary>
 
-### DAY0
+#### DAY0
 
 重温了下 markdown 和 git ，发任务前大致学习了 go （菜鸟教程写的真的是依托答辩），后续大概会学习推荐的 go 语言圣经。非常神奇没有 U 盘，校内店都关了，第二天去校外的店买个吧。
 
-### DAY1
+#### DAY1
 
 被 grub 干碎的一天。
 
@@ -30,7 +34,7 @@ grub-update //更新grub
 
 啥事没干，光倒腾装系统了。呵呵，Arch 永远的神！
 
-### DAY2
+#### DAY2
 
 电脑坏了。
 
@@ -40,31 +44,34 @@ grub-update //更新grub
 
 有点郁闷，之后就结合鸟哥的书再学习了一些linux 知识。计划后面几天就纸上谈兵地学下 go 了。电脑一下修不好的话……希望能早点修好吧。
 
-### DAY3
+#### DAY3
 
 拜读了 Go 语言圣经，这本书不单单是讲语法，有很多拓展实战的内容，读得还是蛮开心的。再补些 http 知识和 Go 相关函数可以尝试去写点小程序吧。 Go 没有安排明确的任务，我就写点有意思的东西在那一块了。电脑保修最早预约在了十三号上午，祈祷 ing……
 
-### DAY4
+#### DAY4
 
 受不鸟啦！电脑修不好只能晚上去网吧通宵了，去阿里云申请了个 ECS 又开始配环境。。。然后大致学了下 Shell 和 构建工具，又是摸鱼的一天呢~
 
-### DAY5
+#### DAY5
 
 世界上还有我这么蠢的人吗。。。早上离开网吧的时候就关了机没结账结果就把我剩下六十多元全扣掉了。。。
 
 看了下 docker，感觉没啥好说的www
 
-### DAY6
+#### DAY6
 
 作息已经完全颠倒了，现在是九点睡三点醒。。。下午通知我去取电脑，谢天谢地总算修好了。~~在网吧待了一晚衣服好多地方有黑点，完全洗不掉，还有浓重的烟味，幸好不用再去了 QwQ~~又再看了下 Go，想写一个爬 P 站图片的爬虫，写的过程有些曲折，本来还想再写一个 web 服务的，但没时间了。。。
 
-### DAY7
+#### DAY7
 
 按现在的作息 DAYn 是指第 n 天的下午到第 n+1 天的早晨。。。晚上开完会就开始摸鱼然后早点睡觉调整作息吧。。。
 
+</details>
+
 ---
 
-## Linux
+<details>
+<summary><h3>Linux</h3></summary>
 
 - [x] 安装 archlinux
 
@@ -84,19 +91,25 @@ grub-update //更新grub
 - [x] 了解守护进程的概念及其管理⽅式
 - [x] 配置 Shell
 - [x] 了解 Linux 的防⽕墙机制
+
+</details>
+
 ---
 
-## 文本处理
+<details>
+  <summary><h3>文本处理</h3></summary>
 
 - [x] 学习简单的标记语言：**markdown**
 - [x] 学习基本的⽂本处理命令（less/more/tail/cat）
 - [x] ⼀些⾼级的⽂本处理命令(grep/awk/sed)
 - [x] Vim
 
+</details>
 
 ---
 
-## 版本控制 Git
+<details>
+  <summary><h3>版本控制 Git</h3></summary>
 
 - [x] Git 是什么，有什么用？
 > Git 是一种分布式版本控制系统（Version Control System），能够管理跟踪计算机文件的版本和变化，并协调多人对同一代码库的开发。
@@ -143,9 +156,12 @@ git remote show <name>//查看远程仓库的详细信息
 ```
 - [ ] 看 Pro Git 深入了解⼀下 git 
 
+</details>
+
 ---
 
-## Shell 和构建工具
+<details>
+  <summary><h3>Shell 和构建工具</h3></summary>
 
 - [x] 能熟悉使用管道，I/O 重定向等 Shell 内置功能。
 
@@ -162,23 +178,26 @@ NAME=main
 
 .PHONY=build
 build:
-        go build -o ${NAME} main.go
+      go build -o ${NAME} main.go
 
 .PHONY=run
 run:
-        ./${NAME} ${ARGS}
+      ./${NAME} ${ARGS}
 
 .PHONY=clean
 clean:
-        go clean
+      go clean
 
 .PHONY=start
 start:build run
 
 ```
+</details>
+
 ---
 
-## Go
+<details>
+  <summary><h3>Go</h3></summary>
 
 - 变量的赋值和运算要求类型相同，常量为了方便设定成无类型。
 - 取模结果的符号与被取模的数一致，除法取整向零方向，负数为算术右移。
@@ -189,9 +208,12 @@ start:build run
 - 在实现接口的方面，一个类型的值不拥有其指针的方法，但一个类型的指针拥有其值的方法。
 - 接口值为 nil 当且仅当其类型和值都为 nil。
 
+</details>
+
 ---
 
-## Docker
+<details>
+  <summary><h3>Docker</h3></summary>
 
 - [x]  了解 docker
 
@@ -217,8 +239,8 @@ docker run //启动容器
 #配置 golang，并在创建时运行 main.go
 FROM centos:7
 RUN yum install -y wget \
-        && wget https://golang.google.cn/dl/go1.14.4.linux-amd64.tar.gz \
-        && tar -zxf go1.14.4.linux-amd64.tar.gz -C /usr/local
+      && wget https://golang.google.cn/dl/go1.14.4.linux-amd64.tar.gz \
+      && tar -zxf go1.14.4.linux-amd64.tar.gz -C /usr/local
 ENV GOROOT=/usr/local/go 
 ENV PATH=$PATH:$GOROOT/bin
 COPY main.go /root/Go/
@@ -258,38 +280,67 @@ version:'3'
 
 #各个服务
 services:
-  #服务名称
-  service_name:
-    #容器生成方式有两种
-    image: #指定镜像
-    build: #用指定目录的 Dockerfile 生成
-    
-    container_name: #容器名
-    restart: #重启策略
-    volumes: #挂载路径设置
-      - "path1:path2:rw/ro" #读写/只读
-      - ...
-      - ...
-    depends_on: #容器依赖
-      - service_name #服务名
-      - ...
-      - ...
-    enviroments: #环境变量
-      - key:value
-      - ...
-      - ...
-    links: #连接的服务
-      - service_name #服务名
-    ports: #映射到宿主机的端口
-      - "port" #随机映射
-      - "port1:port2" #指定映射
-      - ...
-    expose: #暴露端口，被连接的服务访问
-      - port
-      - ...
-      - ...
+#服务名称
+service_name:
+  #容器生成方式有两种
+  image: #指定镜像
+  build: #用指定目录的 Dockerfile 生成
+  
+  container_name: #容器名
+  restart: #重启策略
+  volumes: #挂载路径设置
+    - "path1:path2:rw/ro" #读写/只读
+    - ...
+    - ...
+  depends_on: #容器依赖
+    - service_name #服务名
+    - ...
+    - ...
+  enviroments: #环境变量
+    - key:value
+    - ...
+    - ...
+  links: #连接的服务
+    - service_name #服务名
+  ports: #映射到宿主机的端口
+    - "port" #随机映射
+    - "port1:port2" #指定映射
+    - ...
+  expose: #暴露端口，被连接的服务访问
+    - port
+    - ...
+    - ...
 ```
 
 - [x] docker network
 
 > Docker网络是Docker引擎提供的一种功能，它允许Docker容器之间进行通信和连接，并提供一种隔离和安全的网络环境。
+
+</details>
+
+</details>
+
+<details>
+  <summary><h2>TASK 1 : Anonymous Forum Web Application Backend</h2></summary>
+
+<details>
+  <summary><h3>Daily Report</h3></summary>
+
+#### DAY1
+
+大致看了下任务和提供的链接，有了整体的了解。后面计划：
+
+1. 设计数据库，学习用 Gorm 框架来与数据库交互。
+2. 根据要求设计 API 接口。
+3. 学习用 Gin 框架具体实现各种 API 接口。
+4. 用 HTTPie 测试，空余时间多的话为了交互方便可能会再写个客户端。
+5. 用 docker-compose 构建服务，加个 web 和 数据库的网络通信应该就差不多了。
+
+emmmm 感觉好多啊。。。今天还又摸了 QwQ 
+
+希望顺利吧。
+
+</details>
+
+</details>
+
