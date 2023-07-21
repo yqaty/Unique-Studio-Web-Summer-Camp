@@ -355,6 +355,13 @@ emmmm 感觉好多啊。。。今天还又摸了 QwQ
 
 数据库部分代码应该差不多了，后面开始学习 Gin 框架。
 
+
+#### DAY4
+
+把用户模块的路由写了，为了方便我就只解析 JSON 格式的了。用 httpie 测试了会儿没太大问题，
+遇到了个问题，客服端同时传输用户信息和验证码时，我得解析两次 JSON ，但是第一次解析后缓存就没了。。。于是我就先把报文主题保存，再用两次 json.Unmarshal 解析，感觉处理得有点丑陋🤔。
+还有个没解决的地方，我用的 session 保存登录状态，但是当客户端不用 cookie 重复 GET /users/login 时，会一直给新 cookie 。。。想给旧 cookie 的话就得找值为用户 ID 的 session 。。。大致看了下源码，好像没这个函数。那感觉目前好像只能存 session 到 postgresql 中，再用 gorm 去找了，好麻烦www🤔
+
 </details>
 
 </details>
