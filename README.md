@@ -362,6 +362,15 @@ emmmm 感觉好多啊。。。今天还又摸了 QwQ
 遇到了个问题，客服端同时传输用户信息和验证码时，我得解析两次 JSON ，但是第一次解析后缓存就没了。。。于是我就先把报文主题保存，再用两次 json.Unmarshal 解析，感觉处理得有点丑陋🤔。
 还有个没解决的地方，我用的 session 保存登录状态，但是当客户端不用 cookie 重复 GET /users/login 时，会一直给新 cookie 。。。想给旧 cookie 的话就得找值为用户 ID 的 session 。。。大致看了下源码，好像没这个函数。那感觉目前好像只能存 session 到 postgresql 中，再用 gorm 去找了，好麻烦www🤔
 
+#### DAY5
+
+基本上完成了，现在一直在 ECS 上跑，网址是 http://8.140.204.13:11451，/api/v1 可以查看所有的 api 接口。
+
+之前好像说要写客户端来着，感觉没啥时间，用了下 httpie 测试感觉还挺方便，再用 Go 写发请求的代码实在没啥必要。
+
+关于昨天的第一个问题，今天翻官方文档的时候顺便发现了，明确说 ShouldBindBodyWith 可以。（其实昨天试过这个，开始 code 还是没有解析就觉得不行，但其实是因为我定义的 code 首字母是小写）
+写 post 和 comment 模块的时候，想既然是匿名论坛，那 json 里的 user_id 就得去掉。开始写了一个把 interface{} 转成 json，再把 json 转成 map[string]interface{} 的函数，这样就可以用 delete 把 user_id 去掉，然后再转成 json。。。后面基本完成的时候，想到欸不是开头小写不转换嘛，那我改成小写的不久好了，但 web 部分也要直接调用 UserID，然后感觉结构体 tag 应该有不让转换的，查了下果然有。哎，也许在现在的信息时代，我们的知识面广度远比深度重要？
+
 </details>
 
 </details>
