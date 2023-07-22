@@ -296,7 +296,7 @@ service_name:
     - service_name #服务名
     - ...
     - ...
-  enviroments: #环境变量
+  environments: #环境变量
     - key:value
     - ...
     - ...
@@ -372,6 +372,29 @@ emmmm 感觉好多啊。。。今天还又摸了 QwQ
 写 post 和 comment 模块的时候，想既然是匿名论坛，那 json 里的 user_id 就得去掉。开始写了一个把 interface{} 转成 json，再把 json 转成 map[string]interface{} 的函数，这样就可以用 delete 把 user_id 去掉，然后再转成 json。。。后面基本完成的时候，想到欸不是开头小写不转换嘛，那我改成小写的不久好了，但 web 部分也要直接调用 UserID，然后感觉结构体 tag 应该有不让转换的，查了下果然有。哎，也许在现在的信息时代，我们的知识面广度远比深度重要？
 
 </details>
+
+#### DAY6
+
+被 docker 干碎了。。。有种欲哭无泪的感觉。。。
+
+docker 容器没有前台运行的进程就会自动退出，所以创建的时候可以给它找点事干，比如 docker run -itd image /bin/bash，进入容器的 bash 但不在自己的前台显示。
+
+所以如果直接 docker run ubuntu ，它会自动退出。并且，我找了很久，但是没有方法能让它重新 UP，如果用 start，它会 UP 了之后立刻结束，也没有让启动的同时运行某些东西的参数；如果用 exec，容器不运行根本不让进。
+
+关于 redis，我写了 Dockerfile：
+
+```
+#这就是官方的做法
+from redis
+COPY redis.conf /usr/local/etc/redis/redis.conf
+CMD ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+```
+它用我的设置启动 redis。但是，当 docker-compose 启动时，却立刻 exit(0)，可以说和刚刚的例子一模一样。有解决方法说运行一些前台命令，但是 CMD 只能有一个生效啊。。。我觉得很玄学。。。用 docker-compose 也不能像docker run 那样加各种参数。
+
+最后就用普通 redis了，很成功，一点事都没有。
+
+但就是有点想哭，有些无力。
 
 </details>
 
