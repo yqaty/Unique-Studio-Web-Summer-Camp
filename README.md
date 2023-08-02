@@ -371,8 +371,6 @@ emmmm 感觉好多啊。。。今天还又摸了 QwQ
 关于昨天的第一个问题，今天翻官方文档的时候顺便发现了，明确说 ShouldBindBodyWith 可以。（其实昨天试过这个，开始 code 还是没有解析就觉得不行，但其实是因为我定义的 code 首字母是小写）
 写 post 和 comment 模块的时候，想既然是匿名论坛，那 json 里的 user_id 就得去掉。开始写了一个把 interface{} 转成 json，再把 json 转成 map[string]interface{} 的函数，这样就可以用 delete 把 user_id 去掉，然后再转成 json。。。后面基本完成的时候，想到欸不是开头小写不转换嘛，那我改成小写的不久好了，但 web 部分也要直接调用 UserID，然后感觉结构体 tag 应该有不让转换的，查了下果然有。哎，也许在现在的信息时代，我们的知识面广度远比深度重要？
 
-</details>
-
 #### DAY6
 
 被 docker 干碎了。。。有种欲哭无泪的感觉。。。
@@ -395,6 +393,9 @@ CMD ["redis-server", "/usr/local/etc/redis/redis.conf"]
 最后就用普通 redis了，很成功，一点事都没有。
 
 但就是有点想哭，有些无力。
+
+
+</details>
 
 </details>
 
